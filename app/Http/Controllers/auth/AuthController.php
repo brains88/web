@@ -1,8 +1,10 @@
 <?php
-
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\auth;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+
 class AuthController extends Controller
 {
 
@@ -31,7 +33,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => 'required|string|email',
-            'password' => 'required|string',
+            'password' => 'required',
         ]);
 
         if (!Auth::attempt($request->only('email', 'password'))) {
